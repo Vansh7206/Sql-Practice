@@ -1,0 +1,67 @@
+-- Q1: Get customer name with their order details
+SELECT C.NAME, O.PRODUCT, O.AMOUNT, O.ORDER_DATE,O.STATUS
+FROM CUSTOMERS C
+INNER JOIN ORDERS O 
+ON C.CUSTOMER_ID = O.CUSTOMER_ID;
+
+-- Q2: Find customers whose order not delivered
+SELECT C.NAME FROM CUSTOMERS C
+INNER JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+WHERE STATUS  != 'Delivered';
+
+-- Q3: Get all orders with customer city
+SELECT C.CITY , COUNT(O.ORDER_ID)
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+GROUP BY C.CITY;
+
+-- Q4: Find customers from Mumbai with delivered orders
+SELECT C.NAME
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+WHERE CITY LIKE 'Mumbai' AND o.status = 'Delivered';
+
+-- Q5: Get total spend per customer (show name, not id)
+SELECT C.NAME,SUM(AMOUNT) 
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O 
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+GROUP BY C.CUSTOMER_ID;
+
+-- Q6: Which customers placed orders in May 2023?
+SELECT EXTRACT(MONTH FROM ORDER_DATE) AS MONTH, C.NAME 
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+WHERE EXTRACT(MONTH FROM order_date) = 5;
+
+-- Q7: Find customers who ordered a Laptop
+SELECT C.NAME
+FROM CUSTOMERS C
+JOIN orders o ON c.customer_id = o.customer_id
+WHERE O.product = 'Laptop';
+
+-- Q8: Get orders placed by customers older than 30
+SELECT O.PRODUCT, C.NAME
+FROM CUSTOMERS C
+RIGHT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+WHERE C.AGE > 30;  
+
+-- Q9: Customer with the highest single order amount
+SELECT C.NAME,O.AMOUNT
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+ORDER BY O.AMOUNT DESC LIMIT 1;
+
+-- Q10: List customers and count of their orders (include 0 if none)
+SELECT C.NAME,COUNT(ORDER_ID) 
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+GROUP BY C.CUSTOMER_ID;
+

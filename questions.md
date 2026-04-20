@@ -1,0 +1,10 @@
+-- Q1: Get customer name with their order details
+-- Q2: Find customers who have never placed an order
+-- Q3: Get all orders with customer city
+-- Q4: Find customers from Mumbai with delivered orders
+-- Q5: Get total spend per customer (show name, not id)
+-- Q6: Which customers placed orders in May 2023?
+-- Q7: Find customers who ordered a Laptop
+-- Q8: Get orders placed by customers older than 30
+-- Q9: Customer with the highest single order amount
+-- Q10: List customers and count of their orders (include 0 if none)
