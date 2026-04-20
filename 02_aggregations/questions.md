@@ -1,0 +1,10 @@
+-- Q1: Total revenue from all delivered orders
+-- Q2: Average order amount per city (join needed)
+-- Q3: Count of orders per status
+-- Q4: Maximum and minimum order amount
+-- Q5: Total amount spent by each customer
+-- Q6: Which city has the most customers?
+-- Q7: Average age of customers per city
+-- Q8: How many orders were placed each month?
+-- Q9: Customers who have placed more than 2 orders
+-- Q10: Top 5 customers by total spend
