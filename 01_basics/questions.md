@@ -1,0 +1,10 @@
+-- Q1: Select all customers from Mumbai
+-- Q2: Get name and age of customers older than 25
+-- Q3: Find customers who signed up in 2023
+-- Q4: Get all customers sorted by age descending
+-- Q5: Find customers whose name starts with 'A'
+-- Q6: Get distinct cities from the customers table
+-- Q7: Count total number of customers
+-- Q8: Get the 5 youngest customers
+-- Q9: Find all orders with amount greater than 20000
+-- Q10: Get orders that are not 'Delivered'
