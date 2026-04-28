@@ -1,6 +1,6 @@
 -- Q1. Get all employees who work in Mumbai.
 SELECT * FROM EMPLOYEES
-WHERE CITY LIKE 'Mumbai';
+WHERE CITY = 'Mumbai';
 
 -- Q2. List all employees ordered by salary from highest to lowest.
 SELECT * FROM EMPLOYEES
@@ -58,8 +58,10 @@ GROUP BY CUSTOMER_ID
 ORDER BY CUSTOMER_ID;  --For better readability
 
 -- Q15. Which product categories have more than 2 products?
-SELECT * FROM PRODUCTS
-HAVING COUNT(CATEGORY) > 2;
+SELECT CATEGORY, COUNT(*) 
+FROM PRODUCTS
+GROUP BY CATEGORY
+HAVING COUNT(*) > 2;
 
 -- Q16. Find the maximum and minimum salary across all employees.
 SELECT MAX(SALARY) AS MAX_SAL, MIN(SALARY) AS MIN_SAL
@@ -71,12 +73,13 @@ FROM ORDERS
 GROUP BY STATUS;
 
 -- Q18. Find all departments where the average salary is greater than 70000.
-SELECT * FROM EMPLOYEES
-HAVING SALARY > AVG(SALARY)
-GROUP BY DEPT_ID;
+SELECT DEPT_ID, ROUND(AVG(SALARY), 2)
+FROM EMPLOYEES
+GROUP BY DEPT_ID
+HAVING AVG(SALARY) > 70000;
 
 -- Q19. What is the total quantity sold per product? (from order_items) Show product_id and total quantity.
-SELECT PRODUCT_ID,COUNT(*)
+SELECT PRODUCT_ID, SUM(QUANTITY) AS TOTAL_QUANTITY
 FROM ORDER_ITEMS
 GROUP BY PRODUCT_ID;
 
@@ -90,3 +93,58 @@ SELECT E.NAME, D.DEPT_NAME
 FROM EMPLOYEES E
 INNER JOIN DEPARTMENTS D
 ON E.DEPT_ID = D.DEPT_ID;
+
+--Q22. List all employees including those who don't belong to any department. Show dept_name as NULL where missing. (LEFT JOIN)
+SELECT E.NAME, D.DEPT_NAME
+FROM EMPLOYEES E
+LEFT JOIN DEPARTMENTS D ON E.DEPT_ID = D.DEPT_ID;
+
+-- Q23. Show all departments including those with no employees. (RIGHT JOIN or LEFT JOIN flipped)
+SELECT D.DEPT_NAME, E.NAME
+FROM DEPARTMENTS D
+LEFT JOIN EMPLOYEES E ON D.DEPT_ID = E.DEPT_ID;
+
+-- Q24. Get each order along with the customer's name who placed it.
+SELECT O.ORDER_ID, C.NAME
+FROM ORDERS O
+LEFT JOIN CUSTOMERS C 
+ON O.CUSTOMER_ID = C.CUSTOMER_ID;
+
+--Q25. Show all customers and their orders — include customers who have never placed an order.
+SELECT C.NAME, O.ORDER_ID, O.ORDER_DATE, O.STATUS
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O ON C.CUSTOMER_ID = O.CUSTOMER_ID;
+
+--Q26. For each order item, show the product name, quantity, and unit price.
+SELECT P.PRODUCT_NAME,O.QUANTITY,O.UNIT_PRICE
+FROM PRODUCTS P
+JOIN ORDER_ITEMS O
+ON P.PRODUCT_ID = O.PRODUCT_ID;
+
+--Q27. Get each employee's name, department name, and city — only for employees in the Engineering or Finance department.
+SELECT E.NAME,D.DEPT_NAME,E.CITY
+FROM EMPLOYEES E
+JOIN DEPARTMENTS D 
+ON E.DEPT_ID = D.DEPT_ID
+where D.DEPT_NAME IN ('Engineering','Finance');
+
+--Q28. List all orders with customer name and order status — only for 'Delivered' orders.
+SELECT C.NAME,O.STATUS
+FROM CUSTOMERS C
+JOIN ORDERS O
+ON C.CUSTOMER_ID = O.CUSTOMER_ID
+WHERE O.STATUS = 'Delivered';
+
+--Q29. Show product name and total revenue per product (quantity × unit_price from order_items). (JOIN + GROUP BY)
+SELECT P.PRODUCT_NAME,SUM(O.QUANTITY * O.UNIT_PRICE) AS REV
+FROM PRODUCTS P
+JOIN ORDER_ITEMS O
+ON P.PRODUCT_ID = O.PRODUCT_ID
+GROUP BY P.PRODUCT_NAME;
+
+--Q30. Full picture: For each customer, show their name, total number of orders, and total amount spent. Include customers with 0 orders too.
+SELECT C.NAME, COUNT(O.ORDER_ID), SUM(OI.QUANTITY * OI.UNIT_PRICE)
+FROM CUSTOMERS C
+LEFT JOIN ORDERS O ON C.CUSTOMER_ID = O.CUSTOMER_ID
+LEFT JOIN ORDER_ITEMS OI ON O.ORDER_ID = OI.ORDER_ID
+GROUP BY C.NAME;
