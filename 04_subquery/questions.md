@@ -1,0 +1,5 @@
+--Q1. Find employees who earn more than the average salary.
+--Q2. Find employees who work in the same department as 'Neha Singh'.
+--Q3. Find employees who work in departments with budget over 400000.
+--Q4. Find the highest paid employee in each department using subquery in FROM.
+--Q5. Find employees who earn more than the average salary of their own department.SELECT name, salary, dept_id
