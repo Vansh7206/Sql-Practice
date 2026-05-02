@@ -21,3 +21,15 @@ Find categories where average price is above 5000.
 Show the total number of customers per city.
 Find the month with the highest number of orders.
 Show products that have been ordered more than 3 times total quantity wise.
+
+3. JOINS + SUBQUERIES — 10 Questions:
+Show customer names and the products they ordered.
+Show all customers even if they haven't placed any orders.
+Show product names and total revenue generated per product. (revenue = price × quantity)
+Show names of customers who ordered Electronics.
+Show products that have never been ordered.
+Show names of customers who spent more than the average order value.
+Show the most expensive product ordered by each customer.
+Show customer names who ordered the same product as Vansh.
+Show products whose price is above the average price of their own category.
+Show customers who have placed more than 2 orders.
