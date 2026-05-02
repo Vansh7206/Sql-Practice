@@ -1,4 +1,4 @@
-BASICS — 10 Questions:
+1. BASICS — 10 Questions:
 Show all products with price greater than 2000.
 Show all customers from Mumbai.
 Show product name and price of all Electronics, sorted by price descending.
@@ -9,3 +9,15 @@ Show all products whose name starts with the letter 'S'.
 Show all orders where quantity is between 2 and 5.
 Show unique cities where customers live.
 Show all products where category is either Clothing or Stationery.
+
+2. AGGREGATIONS — 10 Questions:
+Count total number of orders.
+Find the average price of all products.
+Find the total stock available across all products.
+Show the number of products in each category.
+Find the most expensive product in each category.
+Show total quantity ordered per product.
+Find categories where average price is above 5000.
+Show the total number of customers per city.
+Find the month with the highest number of orders.
+Show products that have been ordered more than 3 times total quantity wise.
